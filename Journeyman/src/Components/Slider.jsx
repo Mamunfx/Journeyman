@@ -11,7 +11,7 @@ const Slider = () => {
             <div className="hero-content flex flex-col lg:flex-row-reverse gap-8 p-4">
               <div className="w-full lg:w-1/2">
                 <img
-                  src="https://i.ibb.co.com/v6Yq17cG/rsz-1white-green-simple-and-professional-business-pitch-deck-presentation-page-0010.jpg"
+                  src="https://i.ibb.co.com/s3C5fHB/pexels-shvets-production-7176026.jpg"
                   className="rounded-lg shadow-2xl w-full h-96 object-cover"
                   alt="Worker Role"
                 />
@@ -36,7 +36,8 @@ const Slider = () => {
             <div className="hero-content flex flex-col lg:flex-row gap-8 p-4">
               <div className="w-full lg:w-1/2">
                 <img
-                  src="https://i.ibb.co.com/KpKsJxw6/rsz-white-green-simple-and-professional-business-pitch-deck-presentation-page-0007.jpg"
+                src="https://i.ibb.co.com/tQDpTLz/19197169.jpg"
+                  
                   className="rounded-lg shadow-2xl w-full h-96 object-cover"
                   alt="Buyer Role"
                 />

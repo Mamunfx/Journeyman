@@ -80,11 +80,7 @@ const Dashboard = () => {
 
         <div className="hidden lg:block">
           <div className="flex items-center">
-            <img
-              src="https://i.ibb.co/xgb3fnn/Arsenal-removebg-preview.png"
-              alt=""
-              className="h-16"
-            />
+            
             <Link className="text-3xl ml-4 font-bold" to="/">
             <div className="flex items-center">
               <SiPaloaltonetworks className="text-customColor text-2xl"/>
