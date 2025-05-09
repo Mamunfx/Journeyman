@@ -1,30 +1,29 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 
 const Slider = () => {
   return (
-    <div className="my-24">
+    <div className="w-full max-w-[1600px] mx-auto my-16">
       <div className="carousel w-full">
+
         {/* Slide 1 - Worker Role */}
-        <div id="item1" className="carousel-item w-full">
-          <div className="hero dark:bg-gray-900 py-16">
-            <div className="hero-content flex flex-col lg:flex-row-reverse gap-8 p-4">
-              <div className="w-full lg:w-1/2">
-                <img
-                  src="https://i.ibb.co.com/s3C5fHB/pexels-shvets-production-7176026.jpg"
-                  className="rounded-lg shadow-2xl w-full h-96 object-cover"
-                  alt="Worker Role"
-                />
-              </div>
-              <div className="w-full lg:w-1/2 text-center lg:text-left space-y-4">
-                <h1 className="text-lg text-customColor">Highest Rewards</h1>
-                <h1 className="text-3xl lg:text-5xl font-bold mt-4 lg:mt-0">
-                  Earn Coin Effortlessly
+        <div id="item3" className="carousel-item w-full">
+          <div className="hero min-h-[70vh] bg-[url('https://i.ibb.co/sdRBBJLG/Purple-white-business-profile-presentation-page-0001.jpg')] bg-cover bg-center bg-no-repeat dark:bg-gray-900 py-16">
+          <div className="hero-content flex flex-col md:flex-row flex-wrap gap-8 px-4 sm:px-8 text-xl w-full ">
+              <div className="w-full md:w-1/2 text-center md:text-left space-y-4">
+                <h1 className="text-lg text-customColor">Best Offers</h1>
+                <h1 className="text-3xl md:text-5xl font-bold mt-4 md:mt-0">
+                  Get Your Tasks Done Seamlessly
                 </h1>
-                <p className="py-4 lg:py-6 w-4/5">
-                  Search your dream jobs and find more paying task than other platform . Complete micro tasks, submit for review, and withdraw earnings seamlessly.
+                <p className="py-4 md:py-6 w-full sm:w-4/5">
+                  Find skilled professionals and enjoy fast, high-quality work completion.
                 </p>
-                <Link to="/WorkerDashboard" className="btn btn-sm rounded-full  bg-customColor text-white">Start Earning</Link>
+                <Link
+                  to="/BuyerDashboard"
+                  className="btn btn-sm rounded-full bg-customColor text-white"
+                >
+                  Start Hiring
+                </Link>
               </div>
             </div>
           </div>
@@ -32,54 +31,34 @@ const Slider = () => {
 
         {/* Slide 2 - Buyer Role */}
         <div id="item2" className="carousel-item w-full">
-          <div className="hero dark:bg-gray-900 py-16">
-            <div className="hero-content flex flex-col lg:flex-row gap-8 p-4">
-              <div className="w-full lg:w-1/2">
-                <img
-                src="https://i.ibb.co.com/tQDpTLz/19197169.jpg"
-                  
-                  className="rounded-lg shadow-2xl w-full h-96 object-cover"
-                  alt="Buyer Role"
-                />
-              </div>
-              <div className="w-full lg:w-1/2 text-center lg:text-left space-y-4">
-                <h1 className="text-lg text-customColor">Buyer Features</h1>
-                <h1 className="text-3xl lg:text-5xl font-bold mt-4 lg:mt-0">
-                  Manage Your Task Needs
+          <div className="hero min-h-[70vh] bg-[url('https://i.ibb.co/vC2FJpPK/Purple-white-business-profile-presentation-page-0005.jpg')] bg-cover bg-center bg-no-repeat dark:bg-gray-900 py-16">
+            
+          </div>
+        </div>
+
+        {/* Slide 3 - Admin Role */}
+        <div id="item1" className="carousel-item w-full">
+          <div className="hero min-h-[70vh] bg-[url('https://i.ibb.co/r2gBNsqm/Purple-white-business-profile-presentation-page-0009.jpg')] bg-cover bg-center bg-no-repeat dark:bg-gray-900 py-16">
+            <div className="hero-content flex flex-col md:flex-row flex-wrap gap-8 px-4 sm:px-8 w-full justify-start text-2xl mb-28">
+              <div className="w-full md:w-1/2 text-center md:text-left space-y-4">
+                <h1 className="text-lg text-customColor">Manage Efficiently</h1>
+                <h1 className="text-3xl md:text-5xl font-bold mt-4 md:mt-0">
+                  Keep Everything Running Smoothly
                 </h1>
-                <p className="py-4 lg:py-6 w-4/5">
-                 Get the most talented people around the world to finish you task ! Find the cheapest possible option to complete your jorney with journeyman. Create tasks, review submissions, and pay workers effortlessly.
+                <p className="py-4 md:py-6 w-full sm:w-4/5">
+                  Oversee transactions, resolve disputes, and optimize workflow effortlessly.
                 </p>
-                <Link to="/TaskManagement" className="btn btn-sm rounded-full  bg-customColor text-white ">Create a Task</Link>
+                <Link
+                  to="/AdminDashboard"
+                  className="btn btn-sm rounded-full bg-customColor text-white"
+                >
+                  Access Admin Panel
+                </Link>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Slide 3 - Admin Role */}
-        <div id="item3" className="carousel-item w-full">
-          <div className="hero dark:bg-gray-900 py-16">
-            <div className="hero-content flex flex-col lg:flex-row-reverse gap-8 p-4">
-              <div className="w-full lg:w-1/2">
-                <img
-                  src="https://i.ibb.co.com/nRHX81h/successful-young-businesswoman-standing-office-presenting.jpg"
-                  className="rounded-lg shadow-2xl w-full h-96 object-cover"
-                  alt="Admin Role"
-                />
-              </div>
-              <div className="w-full lg:w-1/2 text-center lg:text-left space-y-4">
-                <h1 className="text-lg text-customColor">Admin Panel</h1>
-                <h1 className="text-3xl lg:text-5xl font-bold mt-4 lg:mt-0">
-                  Oversee Platform Operations
-                </h1>
-                <p className="py-4 lg:py-6 w-4/5">
-                  We ensure our user the best service and  Manage users, review reports, and maintain system integrity with cuttin edge technologies and robust web security method.
-                </p>
-                <Link to="/AdminPanel" className="btn btn-sm rounded-full  bg-customColor text-white ">Go to Admin Dashboard</Link>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
 
       {/* Navigation Buttons */}
