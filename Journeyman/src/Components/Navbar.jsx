@@ -1,10 +1,39 @@
 import React, { useContext, useState, useEffect } from "react";
+import axios from "axios"
 import { Link } from "react-router-dom";
 import { AuthContext } from "../Context/AuthProvider";
 import { SiPaloaltonetworks } from "react-icons/si";
 const Navbar = () => {
   const { logOut, user } = useContext(AuthContext);
   const [scrolling, setScrolling] = useState(false);
+  const [coin ,setCoin]=useState(0);
+ 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        if (user?.email) {
+          const res = await axios.get(`http://localhost:3000/users/${user.email}`);
+          console.log("Full Response:", res);
+          console.log("User data:", res.data);
+          
+          if (res.data && res.data.coins !== undefined) {
+            setCoin(res.data.coins);
+          } else {
+            console.warn("Coins field missing in response!");
+          }
+        }
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
+    };
+    
+    fetchData();
+  }, [user?.email]);
+  
+    
+  
+
+  console.log(coin );
 
   useEffect(() => {
     const handleScroll = () => {
@@ -51,7 +80,7 @@ const Navbar = () => {
               <Link className="text-lg" onClick={logOut}>Sign out</Link>
               <button>
                 <div className="flex items-center gap-1">
-                  <img src="https://i.ibb.co.com/GQB1XwSm/game-coin.png" className="h-8" /> 0$
+                  <img src="https://i.ibb.co.com/GQB1XwSm/game-coin.png" className="h-8" /> <p>{coin}$</p>
                 </div>
               </button>
             </div>
