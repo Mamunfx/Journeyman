@@ -13,8 +13,6 @@ const Navbar = () => {
       try {
         if (user?.email) {
           const res = await axios.get(`http://localhost:3000/users/${user.email}`);
-          console.log("Full Response:", res);
-          console.log("User data:", res.data);
           
           if (res.data && res.data.coins !== undefined) {
             setCoin(res.data.coins);
@@ -30,10 +28,7 @@ const Navbar = () => {
     fetchData();
   }, [user?.email]);
   
-    
-  
 
-  console.log(coin );
 
   useEffect(() => {
     const handleScroll = () => {

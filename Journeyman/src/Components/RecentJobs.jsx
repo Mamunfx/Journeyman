@@ -28,7 +28,7 @@ const RecentJobs = () => {
   return (
     <div>
       <div>
-        <h1 className="text-4xl font-bold text-center my-10">Recent Jobs</h1>
+        <h1 className="text-4xl font-bold text-center my-10 text-gray-400">Recent Jobs</h1>
       </div>
       <div className="flex flex-col md:flex-row gap-6 p-5 w-full mx-auto">
       {/* Left Section - Task Cards */}

@@ -12,12 +12,14 @@ import 'react-toastify/dist/ReactToastify.css';
 import { createContext, useEffect, useState } from "react";
 import { auth } from "../firebase.init";
 import LoadingState from "../Components/LoadingState";
+import axios from "axios";
 
 export const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [userData, setUserData] = useState(null);
 
   const notify = (message = 'Success!') => toast.success(message, {
     position: "top-center",
@@ -114,13 +116,37 @@ const AuthProvider = ({ children }) => {
       setLoading(false);
     }
   };
+  
+  const fetchUserData = async (email) => {
+    try {
+      const userResponse = await axios.get(
+        `http://localhost:3000/users/${email}`,
+      );
+      if (userResponse.data) {
+        setUserData(userResponse.data);
+      } else {
+        setUserData(null);
+      }
+    } catch (error) {
+      console.error("Error fetching user data:", error);
+      notifyError(error.message);
+    }
+  };
+
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
+    const unsubscribe = onAuthStateChanged(auth,async (currentUser) => {
+
+      if (currentUser?.email) {
+        setUser(currentUser);
+        await fetchUserData(currentUser.email.toLowerCase()); 
+      } else {
+        setUser(null);
+        setUserData(null);
+      }
       setLoading(false);
-      console.log(currentUser);
-    });
+    })
+
     return () => unsubscribe();
   }, []);
 
@@ -134,7 +160,8 @@ const AuthProvider = ({ children }) => {
     handleGoogleSignIn,
     notify,
     notifyError,
-    updateUserProfile
+    updateUserProfile,
+    userData
   };
 
   if (loading) {
