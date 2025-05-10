@@ -45,6 +45,8 @@ const AuthProvider = ({ children }) => {
     transition: Bounce,
   });
 
+
+
   const createNewUser = async (email, password) => {
     setLoading(true);
     try {
@@ -57,6 +59,7 @@ const AuthProvider = ({ children }) => {
       setLoading(false);
     }
   };
+
 
   const userLogin = async (email, password) => {
     setLoading(true);
@@ -78,7 +81,6 @@ const AuthProvider = ({ children }) => {
     setLoading(true);
     try {
       await signOut(auth);
-      notify("Logout successful");
       setUser(null);
     } catch (error) {
       notifyError(error.message);
@@ -95,7 +97,10 @@ const AuthProvider = ({ children }) => {
     setLoading(true);
     try {
       await updateProfile(auth.currentUser, profile);
-      notify("Profile updated successfully");
+     notify("Profile updated successfully. Now Login ");
+    await signOut(auth);
+
+
     } catch (error) {
       notifyError(error.message);
     } finally {

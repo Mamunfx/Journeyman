@@ -1,14 +1,15 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, Outlet, useNavigate } from "react-router-dom"; // Correct import
 import { GiHamburgerMenu } from "react-icons/gi";
 import { SiPaloaltonetworks } from "react-icons/si";
-import Profile from "./Profile"; // Import Profile component
 import { AuthContext } from "../Context/AuthProvider";
-
+import { BiSolidRightArrow } from "react-icons/bi";
+import { CiLogout } from "react-icons/ci";
 const Dashboard = () => {
   const { logOut, user, updateUserProfile, userData } = useContext(AuthContext);
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
+
 
   const handleUpdate = (updatedInfo) => {
     updateUserProfile(updatedInfo);
@@ -28,7 +29,7 @@ const Dashboard = () => {
   return (
     <div className="flex flex-col lg:flex-row min-h-screen bg-gray-100">
       {/* Sidebar */}
-      <div className="w-full lg:w-1/4 bg-gray-500 p-4">
+      <div className="w-full lg:w-3/12 bg-gray-500 p-4">
         <div className="lg:hidden flex justify-between items-center">
           <div className="flex items-center">
             
@@ -55,7 +56,8 @@ const Dashboard = () => {
               className="block w-full px-4 py-2 text-left text-xl text-gray-300 hover:bg-customColor rounded"
               to="/dashboard"
             >
-              Profile
+              
+             My profile
             </Link>
 
             {userData?.role === "admin" && (
@@ -107,10 +109,16 @@ const Dashboard = () => {
                 >
                   All payments
                 </Link>
+                <Link
+                  className="block w-full px-4 py-2 text-left text-xl text-gray-300 hover:bg-customColor rounded"
+                  to="/dashboard/purchaseCoin"
+                >
+                  Purchase Coins
+                </Link>
               </>
             )}
 
-            {userData?.role === "worker"  && (
+            {userData?.role === "Worker"  && (
               <>
                 <Link
                   className="block w-full px-4 py-2 text-left text-xl text-gray-300 hover:bg-customColor rounded"
@@ -143,7 +151,9 @@ const Dashboard = () => {
               className="block w-full px-4 py-2 text-left text-xl text-gray-300 hover:bg-customColor rounded"
               onClick={handleLogOut}
             >
-              Logout
+              <div className="flex gap-2 items-center">
+                 <CiLogout className="text-customColor"/> Logout
+                 </div>
             </button>
           </nav>
         )}
@@ -165,7 +175,7 @@ const Dashboard = () => {
               className="block w-full px-4 py-2 text-left text-xl text-gray-300 hover:bg-customColor rounded"
               to="/dashboard"
             >
-              Profile
+             My profile
             </Link>
 
             {userData?.role === "admin" && (
@@ -174,19 +184,25 @@ const Dashboard = () => {
                   className="block w-full px-4 py-2 text-left text-xl text-gray-300 hover:bg-customColor rounded"
                   to="/dashboard/adminHome"
                 >
-                  Admin's home
+                  <div className="flex gap-2 items-center">
+                 <BiSolidRightArrow  className="text-customColor text-sm"/> Admin's home
+                 </div>
                 </Link>
                 <Link
                   className="block w-full px-4 py-2 text-left text-xl text-gray-300 hover:bg-customColor rounded"
                   to="/dashboard/manageUser"
                 >
-                  Manage Users
+                  <div className="flex gap-2 items-center">
+                 <BiSolidRightArrow  className="text-customColor text-sm"/> Manage user's
+                 </div>
                 </Link>
                 <Link
                   className="block w-full px-4 py-2 text-left text-xl text-gray-300 hover:bg-customColor rounded"
                   to="/dashboard/manageTask"
                 >
-                  Manage Tasks
+                  <div className="flex gap-2 items-center">
+                 <BiSolidRightArrow  className="text-customColor text-sm"/> Manage task's
+                 </div>
                 </Link>
               </>
             )}
@@ -197,54 +213,80 @@ const Dashboard = () => {
                   className="block w-full px-4 py-2 text-left text-xl text-gray-300 hover:bg-customColor rounded"
                   to="/dashboard/buyerHome"
                 >
-                  Buyer's home
+                  <div className="flex gap-2 items-center">
+                 <BiSolidRightArrow  className="text-customColor text-sm"/> Buyer's home
+                 </div>
                 </Link>
                 <Link
                   className="block w-full px-4 py-2 text-left text-xl text-gray-300 hover:bg-customColor rounded"
                   to="/dashboard/addNewTask"
                 >
-                  Add new task
+                  <div className="flex gap-2 items-center">
+                 <BiSolidRightArrow  className="text-customColor text-sm"/> Add new task
+                 </div>
                 </Link>
                 <Link
                   className="block w-full px-4 py-2 text-left text-xl text-gray-300 hover:bg-customColor rounded"
                   to="/dashboard/myTasks"
                 >
-                  My Tasks
+                  <div className="flex gap-2 items-center">
+                 <BiSolidRightArrow  className="text-customColor text-sm"/> My tasks
+                 </div>
                 </Link>
                 <Link
                   className="block w-full px-4 py-2 text-left text-xl text-gray-300 hover:bg-customColor rounded"
                   to="/dashboard/allPayments"
                 >
-                  All payments
+                  <div className="flex gap-2 items-center">
+                 <BiSolidRightArrow  className="text-customColor text-sm"/> All payments
+                 </div>
+                </Link>
+                <Link
+                  className="block w-full px-4 py-2 text-left text-xl text-gray-300 hover:bg-customColor rounded"
+                  to="/dashboard/purchaseCoin"
+                >
+                 <div className="flex gap-2 items-center">
+                 <BiSolidRightArrow  className="text-customColor text-sm"/> Purchase coins
+                 </div>
                 </Link>
               </>
             )}
 
-            {userData?.role === "worker"  && (
+            {userData?.role === "Worker"  && (
               <>
                 <Link
                   className="block w-full px-4 py-2 text-left text-xl text-gray-300 hover:bg-customColor rounded"
                   to="/dashboard/workerHome"
                 >
-                  Worker's Home
+                 <div className="flex gap-2 items-center">
+                 <BiSolidRightArrow  className="text-customColor text-sm"/> Worker's Home
+                 </div>
                 </Link>
                 <Link
                   className="block w-full px-4 py-2 text-left text-xl text-gray-300 hover:bg-customColor rounded"
                   to="/dashboard/allTasks"
                 >
-                  All Tasks
+                  <div className="flex gap-2 items-center">
+                 <BiSolidRightArrow className="text-customColor text-sm" /> All Tasks
+                 </div>
+                  
                 </Link>
                 <Link
                   className="block w-full px-4 py-2 text-left text-xl text-gray-300 hover:bg-customColor rounded"
                   to="/dashboard/mySubmissions"
                 >
-                  My Submissions
+                  <div className="flex gap-2 items-center">
+                 <BiSolidRightArrow  className="text-customColor text-sm" /> My Submissions
+                 </div>
+                  
                 </Link>
                 <Link
                   className="block w-full px-4 py-2 text-left text-xl text-gray-300 hover:bg-customColor rounded"
                   to="/dashboard/withDrawls"
                 >
-                  Withdrawals
+                  <div className="flex gap-2 items-center">
+                 <BiSolidRightArrow  className="text-customColor text-sm"/> Withdrawls
+                 </div>
                 </Link>
               </>
             )}
@@ -253,16 +295,16 @@ const Dashboard = () => {
               className="block w-full px-4 py-2 text-left text-xl text-gray-300 hover:bg-customColor rounded"
               onClick={handleLogOut}
             >
-              Logout
+            <div className="flex gap-2 items-center">
+                 <CiLogout className="text-customColor"/> Logout
+                 </div>
             </button>
           </nav>
         </div>
       </div>
 
-      <div className="flex-1 p-6 lg:p-8 ">
-        <h1 className="text-4xl font-bold mb-14 text-center text-gray-500">
-          Welcome to Your Dashboard
-        </h1>
+      <div className="flex-1  py-2">
+        
         <Outlet></Outlet>
       </div>
     </div>

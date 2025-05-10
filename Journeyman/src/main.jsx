@@ -24,6 +24,7 @@ import BuyerHome from './Layouts/BuyerHome'
 import  AddNewTask from './Layouts/AddNewTask'
 import  MyTasks from './Layouts/MyTasks'
 import  AllPayments from './Layouts/AllPayments'
+import  PurchaseCoin from './Layouts/PurchaseCoin'
 import  WorkerHome from './Layouts/WorkerHome'
 import  AllTasks from './Layouts/AllTasks'
 import  MySubmissions from './Layouts/MySubmissions'
@@ -50,7 +51,7 @@ const router = createBrowserRouter([
     ]
   },
   {
-    element: <Dashboard></Dashboard>,
+    element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
     path:"/dashboard",
     children:[
       {
@@ -84,6 +85,10 @@ const router = createBrowserRouter([
       {
         element:<PrivateForBuyer><AllPayments></AllPayments> </PrivateForBuyer>,
         path:"/dashboard/allPayments"
+      },
+      {
+        element:<PrivateForBuyer> <PurchaseCoin></PurchaseCoin> </PrivateForBuyer>,
+        path:"/dashboard/purchaseCoin"
       },
       {
         element:<PrivateRoute> <WorkerHome></WorkerHome> </PrivateRoute>,

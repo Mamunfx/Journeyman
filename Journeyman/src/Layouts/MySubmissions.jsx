@@ -2,9 +2,173 @@ import React from 'react';
 
 const MySubmissions = () => {
     return (
-        <div>
-            <h1>Here all submited task by the worker will be shown</h1>
+      <div>
+        <h1 className="text-3xl font-semibold text-center my-8">
+          Task submitted by me
+        </h1>
+        <hr className="my-4" />
+        <div className="overflow-x-auto">
+          <table className="table">
+            {/* head */}
+            <thead>
+              <tr>
+                <th>
+                  <label>
+                    <input type="checkbox" className="checkbox" />
+                  </label>
+                </th>
+                <th>Name</th>
+                <th>Job</th>
+                <th>Status</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {/* row 1 */}
+              <tr>
+                <th>
+                  <label>
+                    <input type="checkbox" className="checkbox" />
+                  </label>
+                </th>
+                <td>
+                  <div className="flex items-center gap-3">
+                    <div className="avatar">
+                      <div className="mask mask-squircle h-12 w-12">
+                        <img
+                          src="https://img.daisyui.com/images/profile/demo/2@94.webp"
+                          alt="Avatar Tailwind CSS Component"
+                        />
+                      </div>
+                    </div>
+                    <div>
+                      <div className="font-bold">Hart Hagerty</div>
+                      <div className="text-sm opacity-50">United States</div>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  Zemlak, Daniel and Leannon
+                  <br />
+                  <span className="badge badge-ghost badge-sm">
+                    Desktop Support Technician
+                  </span>
+                </td>
+                <td>Pending</td>
+                <th>
+                  <button className="btn rounded-full btn-xs btn-outline border-customColor">details</button>
+                </th>
+              </tr>
+              {/* row 2 */}
+              <tr>
+                <th>
+                  <label>
+                    <input type="checkbox" className="checkbox" />
+                  </label>
+                </th>
+                <td>
+                  <div className="flex items-center gap-3">
+                    <div className="avatar">
+                      <div className="mask mask-squircle h-12 w-12">
+                        <img
+                          src="https://img.daisyui.com/images/profile/demo/3@94.webp"
+                          alt="Avatar Tailwind CSS Component"
+                        />
+                      </div>
+                    </div>
+                    <div>
+                      <div className="font-bold">Brice Swyre</div>
+                      <div className="text-sm opacity-50">China</div>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  Carroll Group
+                  <br />
+                  <span className="badge badge-ghost badge-sm">
+                    Tax Accountant
+                  </span>
+                </td>
+                <td>Pending</td>
+                <th>
+                <button className="btn rounded-full btn-xs btn-outline border-customColor">details</button>
+                </th>
+              </tr>
+              {/* row 3 */}
+              <tr>
+                <th>
+                  <label>
+                    <input type="checkbox" className="checkbox" />
+                  </label>
+                </th>
+                <td>
+                  <div className="flex items-center gap-3">
+                    <div className="avatar">
+                      <div className="mask mask-squircle h-12 w-12">
+                        <img
+                          src="https://img.daisyui.com/images/profile/demo/4@94.webp"
+                          alt="Avatar Tailwind CSS Component"
+                        />
+                      </div>
+                    </div>
+                    <div>
+                      <div className="font-bold">Marjy Ferencz</div>
+                      <div className="text-sm opacity-50">Russia</div>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  Rowe-Schoen
+                  <br />
+                  <span className="badge badge-ghost badge-sm">
+                    Office Assistant I
+                  </span>
+                </td>
+                <td>Approved</td>
+                <th>
+                <button className="btn rounded-full btn-xs btn-outline border-customColor">details</button>
+                </th>
+              </tr>
+              {/* row 4 */}
+              <tr>
+                <th>
+                  <label>
+                    <input type="checkbox" className="checkbox" />
+                  </label>
+                </th>
+                <td>
+                  <div className="flex items-center gap-3">
+                    <div className="avatar">
+                      <div className="mask mask-squircle h-12 w-12">
+                        <img
+                          src="https://img.daisyui.com/images/profile/demo/5@94.webp"
+                          alt="Avatar Tailwind CSS Component"
+                        />
+                      </div>
+                    </div>
+                    <div>
+                      <div className="font-bold">Yancy Tear</div>
+                      <div className="text-sm opacity-50">Brazil</div>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  Wyman-Ledner
+                  <br />
+                  <span className="badge badge-ghost badge-sm">
+                    Community Outreach Specialist
+                  </span>
+                </td>
+                <td>Pending</td>
+                <th>
+                <button className="btn rounded-full btn-xs btn-outline border-customColor">details</button>
+                </th>
+              </tr>
+            </tbody>
+ 
+          </table>
         </div>
+      </div>
     );
 };
 

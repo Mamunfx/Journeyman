@@ -4,6 +4,8 @@ import { AuthContext } from "../Context/AuthProvider";
 
 const Profile = () => {
   const { logOut, user, updateUserProfile } = useContext(AuthContext);
+  console.log(user);
+  
   const [name, setName] = useState(user?.displayName || "");
   const [email, setEmail] = useState(user?.email || "");
   const [profilePicture, setProfilePicture] = useState(user?.photoURL || "");
@@ -16,7 +18,12 @@ const Profile = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto bg-white shadow-lg rounded-lg p-10 mb-10">
+    <div>
+       <h1 className="text-4xl font-bold mb-8 text-center text-gray-500">
+          Welcome to Your Dashboard
+        </h1>
+        <div className="max-w-4xl mx-auto bg-white shadow-lg rounded-lg p-10 mb-10">
+
       <h2 className="text-3xl font-bold mb-8 border-b pb-4 text-left text-gray-500">
         Profile Information
       </h2>
@@ -100,6 +107,8 @@ const Profile = () => {
         </div>
       </div>
     </div>
+    </div>
+    
   );
 };
 

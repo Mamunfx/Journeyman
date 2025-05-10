@@ -1,12 +1,14 @@
 import React, { useContext, useState, useEffect } from "react";
 import axios from "axios"
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { AuthContext } from "../Context/AuthProvider";
 import { SiPaloaltonetworks } from "react-icons/si";
 const Navbar = () => {
+  const location=useLocation();
   const { logOut, user } = useContext(AuthContext);
   const [scrolling, setScrolling] = useState(false);
   const [coin ,setCoin]=useState(0);
+
  
   useEffect(() => {
     const fetchData = async () => {
@@ -71,7 +73,7 @@ const Navbar = () => {
             <div className="flex gap-4 items-center">
 
               <Link to="/" className="text-lg border-t-2 border-customColor text-customColor">Home</Link>
-              <Link to="/dashboard" className="text-lg  ">Dashboard</Link>
+              <Link to="/dashboard" className="text-lg ">Dashboard</Link>
               <Link className="text-lg" onClick={logOut}>Sign out</Link>
               <button>
                 <div className="flex items-center gap-1">

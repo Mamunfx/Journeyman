@@ -1,17 +1,21 @@
 import React, { useState, useContext } from "react";
 import { AuthContext } from "../Context/AuthProvider";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { userLogin, handleGoogleSignIn } = useContext(AuthContext);
+  const { userLogin, handleGoogleSignIn,notify } = useContext(AuthContext);
+  const location=useLocation();
+  const navigate = useNavigate();
 
   const handleLogin = async (event) => {
     event.preventDefault();
     try {
       await userLogin(email, password);
-      console.log("User Logged In Successfully!");
+      notify("User Logged In Successfully!");
+      navigate(location?.state?.from?.pathname && location.state.from.pathname !== "" ? location.state.from.pathname : "/", { replace: true });
+
     } catch (error) {
       console.error("Login Failed:", error.message);
     }
