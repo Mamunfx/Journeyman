@@ -61,7 +61,7 @@ const StarRating = ({ rating }) => {
 
 const TopWorkers = () => {
   return (
-    <div className="max-w-[1366px] mx-auto p-6 w-11/12">
+    <div className="max-w-[1366px] mx-auto p-6 w-10/12">
       <h2 className="text-3xl font-bold text-gray-500 text-center mb-12">
         Top Workers
       </h2>
