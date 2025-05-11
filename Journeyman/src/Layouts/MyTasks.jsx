@@ -128,7 +128,7 @@ const TaskCard = ({ task, onDelete, onUpdate }) => {
   };
 
   return (
-    <div className="card bg-base-100 shadow-xl p-2 flex flex-col lg:flex-row items-center lg:items-start min-h-60 max-h-60 overflow-hidden">
+    <div className="card bg-base-100 shadow-xl p-2 flex flex-col lg:flex-row items-center lg:items-start min-h-60 lg:max-h-60 overflow-hidden">
       <figure className="w-full lg:w-5/12 h-full">
         <img
           src={
