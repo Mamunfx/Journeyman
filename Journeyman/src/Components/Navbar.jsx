@@ -67,8 +67,8 @@ const Navbar = () => {
             </Link>
           </div>
         </div>
-        <div className="navbar-center hidden lg:flex gap-6"></div>
-        <div className="navbar-end space-x-8">
+
+        <div className="navbar-end space-x-6">
           {user ? (
             <div className="flex gap-4 items-center">
 
@@ -80,6 +80,16 @@ const Navbar = () => {
                   <img src="https://i.ibb.co.com/GQB1XwSm/game-coin.png" className="h-8" /> <p>{coin}$</p>
                 </div>
               </button>
+
+              <Link className="items-center" to="/dashboard">
+              <div className="relative group inline-block"> 
+        <img src={user.photoURL} alt="" className="w-12 h-12 rounded-full p-1 border" /> 
+        <div className="absolute top-1/2 right-full transform -translate-y-1/2 mr-2 px-2 py-1 bg-customColor text-white text-sm rounded opacity-0 group-hover:opacity-100 transition-opacity"> 
+            {user.displayName} 
+            </div> 
+            </div>
+            </Link>
+
             </div>
           ) : (
             <div className="flex gap-1">

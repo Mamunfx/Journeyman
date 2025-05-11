@@ -29,6 +29,7 @@ import  WorkerHome from './Layouts/WorkerHome'
 import  AllTasks from './Layouts/AllTasks'
 import  MySubmissions from './Layouts/MySubmissions'
 import  WithDrawls from './Layouts/WithDrawls'
+import TaskDetails from './Layouts/TaskDetails';
 
 
 const router = createBrowserRouter([
@@ -97,6 +98,10 @@ const router = createBrowserRouter([
       {
         element:<PrivateRoute> <AllTasks></AllTasks> </PrivateRoute>,
         path:"/dashboard/allTasks"
+      },
+      {
+        element:<PrivateRoute> <TaskDetails></TaskDetails> </PrivateRoute>,
+        path:"/dashboard/taskDetails/:id"
       },
       {
         element:<PrivateRoute> <MySubmissions></MySubmissions> </PrivateRoute>,
