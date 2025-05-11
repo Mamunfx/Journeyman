@@ -95,7 +95,7 @@ const TaskCard = ({ task }) => {
           Workers Needed: {task.required_workers}
         </p>
         <p className="text-xs font-semibold">
-          Pay Rate: {task.payable_amount}
+          Pay Rate: {task.payable_amount}$
         </p>
         <p className="text-xs text-gray-600 truncate">
           Completion Deadline: {task.completion_date}

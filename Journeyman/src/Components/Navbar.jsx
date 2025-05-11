@@ -77,7 +77,7 @@ const Navbar = () => {
               <Link className="text-lg" onClick={logOut}>Sign out</Link>
               <button>
                 <div className="flex items-center gap-1">
-                  <img src="https://i.ibb.co.com/GQB1XwSm/game-coin.png" className="h-8" /> <p>{coin}$</p>
+                  <img src="https://i.ibb.co.com/GQB1XwSm/game-coin.png" className="h-8" /> <p>{coin}</p>
                 </div>
               </button>
 
