@@ -4,7 +4,7 @@ import { AuthContext } from '../context/AuthProvider';
 
 const COINS_PER_DOLLAR = 20;
 const MIN_WITHDRAWAL_COINS = 300;
-const API_BASE = 'http://localhost:3000';
+const API_BASE = 'https://journeyman-server-sigma.vercel.app';
 
 const WithDrawls = () => {
   const { userData } = useContext(AuthContext);

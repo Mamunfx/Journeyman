@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { AuthContext } from "../Context/AuthProvider";
 
-const API_BASE = "http://localhost:3000";
+const API_BASE = "https://journeyman-server-sigma.vercel.app";
 const DOLLAR_TO_COIN_RATE = 10; // 1 USD = 10 coins
 
 const AddNewTask = () => {

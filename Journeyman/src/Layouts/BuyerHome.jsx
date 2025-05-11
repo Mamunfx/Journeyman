@@ -25,10 +25,10 @@ const BuyerHome = () => {
     setLoading(true);
     Promise.all([
       axios.get(
-        `http://localhost:3000/tasks/user/${encodeURIComponent(email)}`
+        `https://journeyman-server-sigma.vercel.app/tasks/user/${encodeURIComponent(email)}`
       ),
       axios.get(
-        `http://localhost:3000/submissions/client/${encodeURIComponent(email)}`
+        `https://journeyman-server-sigma.vercel.app/submissions/client/${encodeURIComponent(email)}`
       ),
     ])
       .then(([taskRes, subRes]) => {
@@ -45,10 +45,10 @@ const BuyerHome = () => {
   const refreshData = () => {
     Promise.all([
       axios.get(
-        `http://localhost:3000/tasks/user/${encodeURIComponent(email)}`
+        `https://journeyman-server-sigma.vercel.app/tasks/user/${encodeURIComponent(email)}`
       ),
       axios.get(
-        `http://localhost:3000/submissions/client/${encodeURIComponent(email)}`
+        `https://journeyman-server-sigma.vercel.app/submissions/client/${encodeURIComponent(email)}`
       ),
     ]).then(([t, s]) => {
       setTasks(t.data);
@@ -58,7 +58,7 @@ const BuyerHome = () => {
 
   const handleApprove = (id) => {
     axios
-      .put(`http://localhost:3000/submissions/${id}`, { status: "approved" })
+      .put(`https://journeyman-server-sigma.vercel.app/submissions/${id}`, { status: "approved" })
       .then(() => {
         refreshData();
         setModalSub(null);
@@ -69,7 +69,7 @@ const BuyerHome = () => {
 
   const handleReject = (id) => {
     axios
-      .put(`http://localhost:3000/submissions/${id}`, {
+      .put(`https://journeyman-server-sigma.vercel.app/submissions/${id}`, {
         status: "rejected",
       })
       .then(() => {

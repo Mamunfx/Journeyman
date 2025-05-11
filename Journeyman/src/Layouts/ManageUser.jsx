@@ -8,13 +8,13 @@ const ManageUser = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false); // Added state for dropdown
 
   useEffect(() => {
-    axios.get("http://localhost:3000/users")
+    axios.get("https://journeyman-server-sigma.vercel.app/users")
       .then((response) => setUsers(response.data))
       .catch((error) => console.error("Error fetching users:", error));
   }, []);
 
   const handleDelete = (email) => {
-    axios.delete(`http://localhost:3000/users/${email}`)
+    axios.delete(`https://journeyman-server-sigma.vercel.app/users/${email}`)
       .then((response) => {
         if (response.status === 200) {
           setUsers(users.filter(user => user.email !== email));
@@ -25,7 +25,7 @@ const ManageUser = () => {
   };
 
   const handleRoleUpdate = () => {
-    axios.put(`http://localhost:3000/users/${selectedUser.email}`, { role: newRole })
+    axios.put(`https://journeyman-server-sigma.vercel.app/users/${selectedUser.email}`, { role: newRole })
       .then((response) => {
         if (response.status === 200) {
           setUsers(users.map(user => user.email === selectedUser.email ? { ...user, role: newRole } : user));

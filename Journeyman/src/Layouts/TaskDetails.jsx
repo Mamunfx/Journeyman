@@ -22,7 +22,7 @@ const TaskDetails = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`http://localhost:3000/tasks/${taskId}`)
+      .get(`https://journeyman-server-sigma.vercel.app/tasks/${taskId}`)
       .then((res) => {
         setTask(res.data);
         setLoading(false);
@@ -58,7 +58,7 @@ const TaskDetails = () => {
 
     try {
       setSubmitting(true);
-      await axios.post("http://localhost:3000/submissions", payload);
+      await axios.post("https://journeyman-server-sigma.vercel.app/submissions", payload);
 
       setSubmitSuccess(true);
       setSubmissionDetails("");

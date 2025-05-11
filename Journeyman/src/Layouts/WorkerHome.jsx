@@ -27,7 +27,7 @@ const WorkerHome = () => {
 
     setLoading(true);
     axios
-      .get(`http://localhost:3000/submissions/user/${email}`)
+      .get(`https://journeyman-server-sigma.vercel.app/submissions/user/${email}`)
       .then((res) => {
         const allSubs = res.data;
         setSubmissions(allSubs);

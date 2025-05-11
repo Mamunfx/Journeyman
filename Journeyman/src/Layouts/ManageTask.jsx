@@ -9,7 +9,7 @@ const ManageTask = () => {
   // Fetch all tasks directly with full URL
   useEffect(() => {
     axios
-      .get("http://localhost:3000/tasks")
+      .get("https://journeyman-server-sigma.vercel.app/tasks")
       .then((response) => {
         setTasks(response.data);
         setLoading(false);
@@ -26,7 +26,7 @@ const ManageTask = () => {
     if (!window.confirm("Are you sure you want to delete this task?")) return;
 
     axios
-      .delete(`http://localhost:3000/tasks/${id}`)
+      .delete(`https://journeyman-server-sigma.vercel.app/tasks/${id}`)
       .then(() => {
         setTasks((prev) => prev.filter((t) => t._id !== id));
       })

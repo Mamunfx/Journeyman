@@ -24,7 +24,7 @@ const MySubmissions = () => {
     if (!userEmail) return;
     setLoading(true);
     axios
-      .get(`http://localhost:3000/submissions/user/${userEmail}`)
+      .get(`https://journeyman-server-sigma.vercel.app/submissions/user/${userEmail}`)
       .then((res) => {
         setSubmissions(res.data);
         setLoading(false);

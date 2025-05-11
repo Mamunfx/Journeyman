@@ -125,7 +125,7 @@ const AuthProvider = ({ children }) => {
   const fetchUserData = async (email) => {
     try {
       const userResponse = await axios.get(
-        `http://localhost:3000/users/${email}`,
+        `https://journeyman-server-sigma.vercel.app/users/${email}`,
       );
       if (userResponse.data) {
         setUserData(userResponse.data);

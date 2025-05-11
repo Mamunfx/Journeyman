@@ -12,7 +12,7 @@ const AllTasks = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/tasks")
+      .get("https://journeyman-server-sigma.vercel.app/tasks")
       .then((response) => {
         // Keep only tasks with required_workers > 0
         const validTasks = response.data.filter(

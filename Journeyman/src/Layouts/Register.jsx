@@ -57,7 +57,7 @@ const Register = () => {
       };
 
       const response = await axios.post(
-        "http://localhost:3000/users",
+        "https://journeyman-server-sigma.vercel.app/users",
         userData
       );
 

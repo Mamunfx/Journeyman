@@ -15,7 +15,7 @@ const Navbar = () => {
       if (!user?.email) return;
       try {
         const res = await axios.get(
-          `http://localhost:3000/users/${user.email}`
+          `https://journeyman-server-sigma.vercel.app/users/${user.email}`
         );
         if (res.data?.coins !== undefined) {
           setCoin(res.data.coins);

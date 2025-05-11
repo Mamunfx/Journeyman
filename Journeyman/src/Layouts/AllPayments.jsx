@@ -14,7 +14,7 @@ export default function AllPayments() {
       setLoading(false)
       return
     }
-    fetch(`http://localhost:3000/payments/user/${user.email}`)
+    fetch(`https://journeyman-server-sigma.vercel.app/payments/user/${user.email}`)
       .then(async res => {
         if (!res.ok) throw new Error((await res.json()).message || 'Failed to load')
         return res.json()

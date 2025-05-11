@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 const useAxiosSecure = () => {
 
     const axiosInstance = axios.create({
-        baseURL: 'http://localhost:3000', 
+        baseURL: 'https://journeyman-server-sigma.vercel.app', 
         withCredentials: true, 
     });
 

@@ -31,14 +31,14 @@ const topWorkers = [
   },
   {
     id: 5,
-    name: "Michael Brown",
+    name: "Sarah Wilson",
     coins: 7400,
     image: "https://i.ibb.co.com/z6dLFvX/graduated-girl-with-mobile.jpg",
     rating: 4.3,
   },
   {
     id: 6,
-    name: "Sarah Wilson",
+    name: "Moonzoor Mamun",
     coins: 7200,
     image: "https://i.ibb.co.com/jVp4bs5/IMG-8269-2.jpg",
     rating: 4.2,

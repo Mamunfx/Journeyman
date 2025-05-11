@@ -65,7 +65,7 @@ export default function PurchaseCoin() {
       // simulate payment delay
       await new Promise((r) => setTimeout(r, 1000));
 
-      const res = await fetch("http://localhost:3000/payments", {
+      const res = await fetch("https://journeyman-server-sigma.vercel.app/payments", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

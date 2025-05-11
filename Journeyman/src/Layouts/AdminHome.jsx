@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const API_BASE = 'http://localhost:3000';
+const API_BASE = 'https://journeyman-server-sigma.vercel.app';
 const THEME = '#66b3b3';
 
 const AdminHome = () => {
