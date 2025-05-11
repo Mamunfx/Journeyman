@@ -8,7 +8,7 @@ const Slider = () => {
 
         {/* Slide 1 - Worker Role */}
         <div id="item1" className="carousel-item w-full">
-          <div className="hero min-h-[70vh] bg-[url('https://i.ibb.co/r2gBNsqm/Purple-white-business-profile-presentation-page-0009.jpg')] bg-cover bg-center bg-no-repeat dark:bg-gray-900 py-16">
+          <div className="hero min-h-[70vh] bg-[url('https://i.ibb.co/sdRBBJLG/Purple-white-business-profile-presentation-page-0001.jpg')] bg-cover bg-center bg-no-repeat dark:bg-gray-900 py-16">
             <div className="hero-content flex flex-col md:flex-row flex-wrap gap-8 px-4 sm:px-8 w-full justify-start text-2xl mb-28">
               <div className="w-full md:w-1/2 text-center md:text-left space-y-4">
                 <h1 className="text-lg text-customColor">Manage Efficiently</h1>

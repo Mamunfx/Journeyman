@@ -5,42 +5,42 @@ const topWorkers = [
     id: 1,
     name: "John Doe",
     coins: 9500,
-    image: "https://i.ibb.co.com/99wBGrqG/journeyman-high-resolution-logo-removebg-preview.png",
+    image: "https://i.ibb.co.com/3RTHDWp/rashid.jpg",
     rating: 4.8,
   },
   {
     id: 2,
     name: "Jane Smith",
     coins: 8700,
-    image: "https://i.ibb.co.com/99wBGrqG/journeyman-high-resolution-logo-removebg-preview.png",
+    image: "https://i.ibb.co.com/hRm9vpc/ken.jpg",
     rating: 4.6,
   },
   {
     id: 3,
     name: "Mark Johnson",
     coins: 8100,
-    image: "https://i.ibb.co.com/99wBGrqG/journeyman-high-resolution-logo-removebg-preview.png",
+    image: "https://i.ibb.co.com/jZ8PKF1/david.jpg",
     rating: 4.5,
   },
   {
     id: 4,
     name: "Emily Davis",
     coins: 7800,
-    image: "https://i.ibb.co.com/99wBGrqG/journeyman-high-resolution-logo-removebg-preview.png",
+    image: "https://i.ibb.co.com/Dt5TY9f/virat.jpg",
     rating: 4.4,
   },
   {
     id: 5,
     name: "Michael Brown",
     coins: 7400,
-    image: "https://i.ibb.co.com/99wBGrqG/journeyman-high-resolution-logo-removebg-preview.png",
+    image: "https://i.ibb.co.com/z6dLFvX/graduated-girl-with-mobile.jpg",
     rating: 4.3,
   },
   {
     id: 6,
     name: "Sarah Wilson",
     coins: 7200,
-    image: "https://i.ibb.co.com/99wBGrqG/journeyman-high-resolution-logo-removebg-preview.png",
+    image: "https://i.ibb.co.com/jVp4bs5/IMG-8269-2.jpg",
     rating: 4.2,
   },
 ];
@@ -69,7 +69,7 @@ const TopWorkers = () => {
         {topWorkers.map((worker) => (
           <div key={worker.id} className="card bg-base-100 shadow-xl  transition-transform transform hover:scale-105 hover:shadow-2xl">
             <figure>
-              <img src={worker.image} alt={worker.name} className="w-full h-48 object-cover rounded-t-lg"/>
+              <img src={worker.image} alt={worker.name} className="w-full h-48 object-scale-down rounded-t-lg"/>
             </figure>
             <div className="card-body">
               <h2 className="card-title">
