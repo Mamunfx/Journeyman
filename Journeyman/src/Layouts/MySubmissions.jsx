@@ -30,7 +30,7 @@ const MySubmissions = () => {
         setLoading(false);
       })
       .catch((err) => {
-        console.error("Error fetching submissions:", err);
+        //console.error("Error fetching submissions:", err);
         setError(err.message || "Failed to load submissions");
         setLoading(false);
       });

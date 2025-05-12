@@ -28,7 +28,7 @@ const TaskDetails = () => {
         setLoading(false);
       })
       .catch((err) => {
-        console.error("Error fetching task:", err);
+        //console.error("Error fetching task:", err);
         setError(err.message || "Failed to load task");
         setLoading(false);
       });
@@ -68,7 +68,7 @@ const TaskDetails = () => {
         required_workers: prev.required_workers - 1,
       }));
     } catch (err) {
-      console.error("Error submitting:", err);
+      //console.error("Error submitting:", err);
       setSubmitError(err.response?.data?.message || err.message);
     } finally {
       setSubmitting(false);

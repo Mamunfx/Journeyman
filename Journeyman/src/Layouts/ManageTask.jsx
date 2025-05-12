@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
-
+import { AuthContext } from '../context/AuthProvider';
 const ManageTask = () => {
   const [tasks, setTasks] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const {notifyError,notify}=useContext(AuthContext)
 
   // Fetch all tasks directly with full URL
   useEffect(() => {
@@ -15,7 +16,7 @@ const ManageTask = () => {
         setLoading(false);
       })
       .catch((err) => {
-        console.error("Error fetching tasks:", err);
+        //console.error("Error fetching tasks:", err);
         setError("Could not load tasks");
         setLoading(false);
       });
@@ -31,8 +32,8 @@ const ManageTask = () => {
         setTasks((prev) => prev.filter((t) => t._id !== id));
       })
       .catch((err) => {
-        console.error("Error deleting task:", err);
-        alert("Failed to delete task");
+        //console.error("Error deleting task:", err);
+        notifyError("Failed to delete task");
       });
   };
 

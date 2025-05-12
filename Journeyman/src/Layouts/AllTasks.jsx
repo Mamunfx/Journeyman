@@ -22,7 +22,7 @@ const AllTasks = () => {
         setLoading(false);
       })
       .catch((error) => {
-        console.error("API Error:", error);
+        //console.error("API Error:", error);
         setError(error.message);
         setLoading(false);
       });

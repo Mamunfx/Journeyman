@@ -20,7 +20,7 @@ const formatDate = (isoString) => {
 };
 
 const MyTasks = () => {
-  const { user } = useContext(AuthContext);
+  const { user,notifyError,notify } = useContext(AuthContext);
   const [tasks, setTasks] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -53,7 +53,7 @@ const MyTasks = () => {
         );
       setTasks(sorted);
     } catch (err) {
-      console.error("API Error:", err);
+      //console.error("API Error:", err);
       setError(err.message || "Failed to load tasks");
     } finally {
       setLoading(false);
@@ -86,8 +86,8 @@ const MyTasks = () => {
 
       setTasks((t) => t.filter((x) => x._id !== id));
     } catch (err) {
-      console.error("Delete & refund error:", err);
-      alert("Failed to delete task or process refund.");
+      //console.error("Delete & refund error:", err);
+      notifyError("Failed to delete task or process refund.");
     }
   };
 
@@ -107,8 +107,8 @@ const MyTasks = () => {
         old.map((t) => (t._id === id ? { ...t, ...updated } : t))
       );
     } catch (err) {
-      console.error("Update Error:", err);
-      alert("Failed to update task");
+      //console.error("Update Error:", err);
+      notifyError("Failed to update task");
     }
   };
 

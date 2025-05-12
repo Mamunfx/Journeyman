@@ -21,7 +21,7 @@ const Navbar = () => {
           setCoin(res.data.coins);
         }
       } catch (err) {
-        console.error("Error fetching user data:", err);
+        //console.error("Error fetching user data:", err);
       }
     };
     fetchData();
@@ -35,7 +35,7 @@ const Navbar = () => {
 
   return (
     <div
-      className={`navbar py-1 fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`navbar py-1 fixed top-0 left-0 right-0 z-50 transition-all duration-300  ${
         scrolling
           ? "backdrop-blur-md bg-white/60 shadow-md"
           : "bg-transparent"
@@ -117,7 +117,7 @@ const Navbar = () => {
         </div>
 
         {/* Desktop / tablet nav links */}
-        <div className="navbar-end hidden md:flex items-center space-x-6">
+        <div className="navbar-end hidden md:flex items-center space-x-6 ">
           {user ? (
             <>
               <Link

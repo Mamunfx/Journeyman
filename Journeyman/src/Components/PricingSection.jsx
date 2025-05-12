@@ -1,5 +1,6 @@
 import React from "react";
 import { FaCheck } from "react-icons/fa6";
+import { Link } from "react-router-dom";
 const PricingSection = () => {
   const plans = [
     {
@@ -30,7 +31,7 @@ const PricingSection = () => {
     },
     {
       title: "Elite",
-      price: "$29.99",
+      price: "$34.99",
       features: [
         { text: "Access to micro-tasks", available: true },
         { text: "Best payouts", available: true },
@@ -106,15 +107,17 @@ const PricingSection = () => {
             </ul>
 
             {/* Get Started Button */}
+            <Link to="/dashboard">
             <button
               className={`mt-8 w-full py-3 font-semibold rounded-full transition-all duration-300 ${
                 plan.highlighted
                   ? "bg-white text-[rgb(102,179,179)] hover:bg-gray-200"
                   : "bg-[rgb(102,179,179)] text-white hover:bg-teal-500"
               }`}
-            >
-              Get Started
+            >Get Started
+              
             </button>
+            </Link>
           </div>
         ))}
       </div>

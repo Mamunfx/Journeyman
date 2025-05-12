@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
-
+import { AuthContext } from "../context/AuthProvider";
 const ManageUser = () => {
+  const {notifyError,notify}=useContext(AuthContext)
   const [users, setUsers] = useState([]);
   const [selectedUser, setSelectedUser] = useState(null);
   const [newRole, setNewRole] = useState("");
@@ -10,7 +11,8 @@ const ManageUser = () => {
   useEffect(() => {
     axios.get("https://journeyman-server-sigma.vercel.app/users")
       .then((response) => setUsers(response.data))
-      .catch((error) => console.error("Error fetching users:", error));
+      .catch((error) => console.error("Error fetching users:", error) 
+    );
   }, []);
 
   const handleDelete = (email) => {
@@ -18,7 +20,7 @@ const ManageUser = () => {
       .then((response) => {
         if (response.status === 200) {
           setUsers(users.filter(user => user.email !== email));
-          alert("User deleted successfully!");
+          notify("User deleted successfully!");
         }
       })
       .catch((error) => console.error("Error deleting user:", error));
@@ -29,7 +31,7 @@ const ManageUser = () => {
       .then((response) => {
         if (response.status === 200) {
           setUsers(users.map(user => user.email === selectedUser.email ? { ...user, role: newRole } : user));
-          alert("User role updated successfully!");
+          notify("User role updated successfully!");
           setSelectedUser(null);
         }
       })

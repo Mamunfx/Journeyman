@@ -3,8 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../Context/AuthProvider";
 
 const Profile = () => {
-  const { logOut, user, updateUserProfile } = useContext(AuthContext);
-  console.log(user);
+  const { logOut, user, updateUserProfile,notifyError,notify } = useContext(AuthContext);
   
   const [name, setName] = useState(user?.displayName || "");
   const [email, setEmail] = useState(user?.email || "");
@@ -14,7 +13,7 @@ const Profile = () => {
 
   const handleUpdate = (updatedInfo) => {
     updateUserProfile(updatedInfo);
-    alert("Profile updated successfully");
+    notify("Profile updated successfully");
   };
 
   return (

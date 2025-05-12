@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-
+import { Link } from "react-router-dom";
 const ShowOfTask = () => {
   const [tasks, setTasks] = useState([]);
 
@@ -123,9 +123,9 @@ const ShowOfTask = () => {
               <strong>Deadline:</strong> {task.completion_date}
             </p>
             <div className="card-actions justify-start">
-              <button className="btn bg-customColor text-white border-customColor rounded-full btn-sm">
+              <Link to="/dashboard"><button className="btn bg-customColor text-white border-customColor rounded-full btn-sm">
                 View Details
-              </button>
+              </button></Link>
             </div>
           </div>
         </div>

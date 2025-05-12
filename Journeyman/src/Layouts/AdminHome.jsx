@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
-
+import { AuthContext } from '../Context/AuthProvider';
 const API_BASE = 'https://journeyman-server-sigma.vercel.app';
 const THEME = '#66b3b3';
 
 const AdminHome = () => {
+  const {notifyError,notify}=useContext(AuthContext);
   const [users, setUsers] = useState([]);
   const [withdrawals, setWithdrawals] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -20,7 +21,7 @@ const AdminHome = () => {
         setUsers(usersRes.data);
         setWithdrawals(withdrawalsRes.data);
       } catch (err) {
-        console.error('Fetch error:', err);
+        //console.error('Fetch error:', err);
       } finally {
         setLoading(false);
       }
@@ -59,12 +60,12 @@ const AdminHome = () => {
       // 2) Find the worker and compute new coin balance
       const worker = users.find(u => u.email === wd.worker_email);
       if (!worker) {
-        alert('Error: Worker not found.');
+        notifyError('Error: Worker not found.');
         return;
       }
       const newCoinCount = (worker.coins || 0) - wd.withdrawal_coin;
       if (newCoinCount < 0) {
-        alert('Error: Worker has insufficient coins.');
+        notifyError('Error: Worker has insufficient coins.');
         return;
       }
 
@@ -84,15 +85,15 @@ const AdminHome = () => {
         )
       );
     } catch (err) {
-      console.error('Payment error:', err);
-      alert('Failed to process payment. See console for details.');
+      //console.error('Payment error:', err);
+      notifyError('Failed to process payment. See //console for details.');
     }
   };
 
   return (
     <div className="max-w-7xl mx-auto p-6 space-y-8">
-      <h1 className="text-3xl font-bold text-center" style={{ color: THEME }}>
-        Admin Dashboard
+      <h1 className="text-3xl font-bold text-center text-gray-400" >
+        Admin's home
       </h1>
 
       {/* Stats Cards */}

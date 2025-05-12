@@ -43,7 +43,7 @@ const WorkerHome = () => {
         );
       })
       .catch((err) => {
-        console.error("Error loading submissions:", err);
+        //console.error("Error loading submissions:", err);
         setError(err.message || "Failed to load data");
       })
       .finally(() => setLoading(false));

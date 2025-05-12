@@ -6,14 +6,14 @@ import { AuthContext } from "../Context/AuthProvider";
 import { BiSolidRightArrow } from "react-icons/bi";
 import { CiLogout } from "react-icons/ci";
 const Dashboard = () => {
-  const { logOut, user, updateUserProfile, userData } = useContext(AuthContext);
+  const { logOut, user, updateUserProfile, userData,notifyError,notify } = useContext(AuthContext);
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
 
 
   const handleUpdate = (updatedInfo) => {
     updateUserProfile(updatedInfo);
-    alert("Profile updated successfully");
+    notify("Profile updated successfully");
   };
 
   const handleLogOut = () => {
@@ -22,7 +22,7 @@ const Dashboard = () => {
         navigate("/login");
       })
       .catch((error) => {
-        console.error("Error during logout:", error);
+        //console.error("Error during logout:", error);
       });
   };
 
@@ -118,7 +118,7 @@ const Dashboard = () => {
               </>
             )}
 
-            {userData?.role === "Worker"  && (
+            {(userData?.role === "Worker" || userData?.role == undefined)&& (
               <>
                 <Link
                   className="block w-full px-4 py-2 text-left text-xl text-gray-300 hover:bg-customColor rounded"
@@ -252,7 +252,7 @@ const Dashboard = () => {
               </>
             )}
 
-            {userData?.role === "Worker"  && (
+            {(userData?.role === "Worker" || userData?.role == undefined) && (
               <>
                 <Link
                   className="block w-full px-4 py-2 text-left text-xl text-gray-300 hover:bg-customColor rounded"

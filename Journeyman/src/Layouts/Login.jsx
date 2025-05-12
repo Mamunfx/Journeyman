@@ -17,7 +17,7 @@ const Login = () => {
       navigate(location?.state?.from?.pathname && location.state.from.pathname !== "" ? location.state.from.pathname : "/", { replace: true });
 
     } catch (error) {
-      console.error("Login Failed:", error.message);
+      //console.error("Login Failed:", error.message);
     }
   };
 

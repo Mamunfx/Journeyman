@@ -89,14 +89,14 @@ const WithDrawls = () => {
       setAccountNumber('');
       setPaymentSystem('Bkash');
     } catch (err) {
-      console.error('Withdrawal error:', err);
+      //console.error('Withdrawal error:', err);
       setError('Failed to submit withdrawal. Please try again later.');
     }
   };
 
   return (
     <div className="max-w-md mx-auto mt-8 p-6 bg-white rounded-lg shadow-lg">
-      <h2 className="text-2xl font-semibold text-[#66b3b3] text-center mb-4">
+      <h2 className="text-2xl font-semibold  text-center mb-4">
         Withdrawal Request
       </h2>
 

@@ -7,7 +7,7 @@ const API_BASE = "https://journeyman-server-sigma.vercel.app";
 const DOLLAR_TO_COIN_RATE = 10; // 1 USD = 10 coins
 
 const AddNewTask = () => {
-  const { user, setUser } = useContext(AuthContext);
+  const { user, setUser,notify,notifyError } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const [task, setTask] = useState({
@@ -29,7 +29,7 @@ const AddNewTask = () => {
     e.preventDefault();
 
     if (!user?.email) {
-      alert("You must be logged in to add a task.");
+      notifyError("You must be logged in to add a task.");
       return;
     }
 
@@ -42,7 +42,7 @@ const AddNewTask = () => {
       requiredWorkers <= 0 ||
       payRateUSD <= 0
     ) {
-      alert("Please enter valid positive numbers for workers and pay rate.");
+      notifyError("Please enter valid positive numbers for workers and pay rate.");
       return;
     }
 
@@ -58,14 +58,14 @@ const AddNewTask = () => {
       );
       currentCoins = Number(userRes.data.coins) || 0;
     } catch (err) {
-      console.error("Failed to fetch user balance:", err);
-      alert("Unable to verify your coin balance. Try again later.");
+      //console.error("Failed to fetch user balance:", err);
+      notifyError("Unable to verify your coin balance. Try again later.");
       return;
     }
 
     // 4) Check balance
     if (currentCoins < totalCostCoins) {
-      alert(
+      notifyError(
         `Insufficient coins. You have ${currentCoins}, but need ${totalCostCoins}.`
       );
       navigate("/purchase");
@@ -104,7 +104,7 @@ const AddNewTask = () => {
           setUser({ ...user, coins: newBalance });
         }
 
-        alert(`Task added! Coins deducted: ${totalCostCoins}. New balance: ${newBalance}`);
+        notify(`Task added! Coins deducted: ${totalCostCoins}. New balance: ${newBalance}`);
         // Reset form
         setTask({
           task_title: "",
@@ -116,12 +116,12 @@ const AddNewTask = () => {
           submission_info: "",
         });
       } else {
-        console.error("Task creation failed:", createRes);
-        alert("Failed to add task. Try again.");
+        //console.error("Task creation failed:", createRes);
+        notifyError("Failed to add task. Try again.");
       }
     } catch (err) {
-      console.error("Error during task creation or coin deduction:", err);
-      alert("An error occurred. Please check console for details.");
+      //console.error("Error during task creation or coin deduction:", err);
+      notifyError("An error occurred. Please check //console for details.");
     }
   };
 

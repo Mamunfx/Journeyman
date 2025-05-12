@@ -11,7 +11,7 @@ const THEME = {
 };
 
 const BuyerHome = () => {
-  const { userData } = useContext(AuthContext);
+  const { userData ,notifyError,notify} = useContext(AuthContext);
   const email = userData?.email;
 
   const [tasks, setTasks] = useState([]);
@@ -36,7 +36,7 @@ const BuyerHome = () => {
         setSubs(subRes.data);
       })
       .catch((err) => {
-        console.error(err);
+        //console.error(err);
         setError(err.message || "Failed to load data");
       })
       .finally(() => setLoading(false));
@@ -62,9 +62,9 @@ const BuyerHome = () => {
       .then(() => {
         refreshData();
         setModalSub(null);
-        alert("Submission approved successfully");
+        notify("Submission approved successfully");
       })
-      .catch(() => alert("Failed to approve submission"));
+      .catch(() => notifyError("Failed to approve submission"));
   };
 
   const handleReject = (id) => {
@@ -75,9 +75,9 @@ const BuyerHome = () => {
       .then(() => {
         refreshData();
         setModalSub(null);
-        alert("Submission rejected successfully");
+        notify("Submission rejected successfully");
       })
-      .catch(() => alert("Failed to reject submission"));
+      .catch(() => notifyError("Failed to reject submission"));
   };
 
   if (loading) return <LoadingState />;

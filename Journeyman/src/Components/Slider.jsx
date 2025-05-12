@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Slider = () => {
   return (
-    <div className="w-full max-w-[1600px] mx-auto my-16">
+    <div className="w-full max-w-[1600px] mx-auto my-16 ">
       <div className="carousel w-full">
 
         {/* Slide 1 - Worker Role */}
@@ -12,14 +12,14 @@ const Slider = () => {
             <div className="hero-content flex flex-col md:flex-row flex-wrap gap-8 px-4 sm:px-8 w-full justify-start text-2xl mb-28">
               <div className="w-full md:w-1/2 text-center md:text-left space-y-4">
                 <h1 className="text-lg text-customColor">Manage Efficiently</h1>
-                <h1 className="text-3xl md:text-5xl font-bold mt-4 md:mt-0">
+                <h1 className="text-3xl md:text-5xl font-bold mt-4 md:mt-0 text-gray-500">
                   Keep Everything Running Smoothly
                 </h1>
-                <p className="py-4 md:py-6 w-full sm:w-4/5">
+                <p className="py-4 md:py-6 w-full sm:w-4/5 text-gray-500">
                   Oversee transactions, resolve disputes, and optimize workflow effortlessly.
                 </p>
                 <Link
-                  to="/AdminDashboard"
+                  to="/dashboard"
                   className="btn btn-sm rounded-full bg-customColor text-white"
                 >
                   Explore more
@@ -36,14 +36,14 @@ const Slider = () => {
           <div className="hero-content flex flex-col md:flex-row flex-wrap gap-8 px-4 sm:px-8 text-2xl w-full ">
               <div className="w-full md:w-1/2 text-center md:text-left space-y-4">
                 <h1 className="text-lg text-customColor">Lowest price</h1>
-                <h1 className="text-3xl md:text-6xl font-bold mt-4 md:mt-0">
+                <h1 className="text-3xl md:text-6xl font-bold mt-4 md:mt-0 text-gray-500">
                   Get Your Tasks Done Seamlessly
                 </h1>
-                <p className="py-4 md:py-6 w-full sm:w-4/5">
+                <p className="py-4 md:py-6 w-full sm:w-4/5 text-gray-500">
                   Find skilled professionals and enjoy fast, high-quality work completion.
                 </p>
                 <Link
-                  to="/BuyerDashboard"
+                  to="/dashboard"
                   className="btn btn-sm rounded-full bg-customColor text-white"
                 >
                   Start Hiring
@@ -58,14 +58,14 @@ const Slider = () => {
           <div className="hero-content flex flex-col md:flex-row flex-wrap gap-8 px-4 sm:px-8 text-2xl w-full ">
               <div className="w-full md:w-1/2 text-center md:text-left space-y-4">
                 <h1 className="text-lg text-customColor">Best Offers</h1>
-                <h1 className="text-3xl md:text-6xl font-bold mt-4 md:mt-0">
+                <h1 className="text-3xl md:text-6xl font-bold mt-4 md:mt-0 text-gray-500">
                   Get best offering for you tasks
                 </h1>
-                <p className="py-4 md:py-6 w-full sm:w-4/5">
+                <p className="py-4 md:py-6 w-full sm:w-4/5 text-gray-500">
                   Find skilled professionals and enjoy fast, high-quality work completion.
                 </p>
                 <Link
-                  to="/BuyerDashboard"
+                  to="/dashboard"
                   className="btn btn-sm rounded-full bg-customColor text-white"
                 >
                   Start tasks
