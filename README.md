@@ -2,13 +2,13 @@
 
 **Journeyman** is our cozy little corner of the internet where people—like you!—can find quick, bite-sized tasks and turn them into real rewards. Whether you’re looking to earn a few extra coins in your free time, need help with small jobs, or just want to explore, Journeyman makes it simple and fun.
 
-**🌐 Live Site:** https://journeyman.example.com  
+**🌐 Live Site:** https://journeyman-44415.web.app
 
 ---
 
 ## 🔑 Admin Access  
-- **Username:** admin@journeyman.com  
-- **Password:** J0urn3yman!Secure  
+- **Username:** journeyman@gmail.com  
+- **Password:** Journey123 
 
 ---
 

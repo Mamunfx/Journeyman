@@ -13,7 +13,7 @@ const Login = () => {
     event.preventDefault();
     try {
       await userLogin(email, password);
-      notify("User Logged In Successfully!");
+      
       navigate(location?.state?.from?.pathname && location.state.from.pathname !== "" ? location.state.from.pathname : "/", { replace: true });
 
     } catch (error) {

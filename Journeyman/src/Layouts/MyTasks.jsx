@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
-import axios from "axios";
 import { AuthContext } from "../Context/AuthProvider";
+import axios from "axios";
+
 
 const API_BASE = "https://journeyman-server-sigma.vercel.app";
 const DOLLAR_TO_COIN_RATE = 10; // 1 $ = 10 coins

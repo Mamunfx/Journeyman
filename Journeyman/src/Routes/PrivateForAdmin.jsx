@@ -12,7 +12,7 @@ const PrivateForAdmin = ({ children }) => {
     return <LoadingState />;
   }
 
-  if (userData?.role === "admin") {
+  if (userData?.role === "Admin") {
     return children;
   }
 

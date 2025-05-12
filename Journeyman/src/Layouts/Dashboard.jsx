@@ -60,7 +60,7 @@ const Dashboard = () => {
              My profile
             </Link>
 
-            {userData?.role === "admin" && (
+            {userData?.role === "Admin" && (
               <>
                 <Link
                   className="block w-full px-4 py-2 text-left text-xl text-gray-300 hover:bg-customColor rounded"
@@ -178,7 +178,7 @@ const Dashboard = () => {
              My profile
             </Link>
 
-            {userData?.role === "admin" && (
+            {userData?.role === "Admin" && (
               <>
                 <Link
                   className="block w-full px-4 py-2 text-left text-xl text-gray-300 hover:bg-customColor rounded"
