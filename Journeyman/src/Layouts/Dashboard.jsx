@@ -29,7 +29,7 @@ const Dashboard = () => {
   return (
     <div className="flex flex-col lg:flex-row min-h-screen bg-gray-100">
       {/* Sidebar */}
-      <div className="w-full lg:w-3/12 bg-gray-500 p-4">
+      <div className="w-full lg:w-3/12 bg-gray-500 p-4 lg:rounded-r-2xl ">
         <div className="lg:hidden flex justify-between items-center">
           <div className="flex items-center">
             
