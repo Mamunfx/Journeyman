@@ -18,12 +18,16 @@ const Register = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
-  const [profilePic, setProfilePic] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("Worker");
   const [errorMessage, setErrorMessage] = useState("");
   const [acceptedTerms, setAcceptedTerms] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+
+  // new state for image upload
+  const [file, setFile] = useState(null);
+  const [preview, setPreview] = useState("");
+  const [uploading, setUploading] = useState(false);
 
   const { createNewUser, updateUserProfile, handleGoogleSignIn } =
     useContext(AuthContext);
@@ -33,8 +37,37 @@ const Register = () => {
   const validatePassword = (pw) =>
     /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(pw);
 
+  // handle file selection & preview
+  const handleFileChange = (e) => {
+    const selected = e.target.files[0];
+    if (!selected) return;
+    setFile(selected);
+    setPreview(URL.createObjectURL(selected));
+  };
+
+  // upload to ImgBB and return URL
+  const uploadToImgBB = async (imageFile) => {
+    const apiKey = import.meta.env.VITE_IMGBB_API_KEY;
+    const formData = new FormData();
+    formData.append("image", imageFile);
+    const resp = await fetch(
+      `https://api.imgbb.com/1/upload?key=${apiKey}`,
+      {
+        method: "POST",
+        body: formData,
+      }
+    );
+    const data = await resp.json();
+    if (!data.success) {
+      throw new Error("Image upload failed");
+    }
+    return data.data.url;
+  };
+
   const handleRegister = async (e) => {
     e.preventDefault();
+
+    // basic validations
     if (!validateEmail(email)) {
       setErrorMessage("Invalid email format.");
       return;
@@ -49,11 +82,23 @@ const Register = () => {
       setErrorMessage("You must accept Terms & Privacy Policy.");
       return;
     }
+    if (!file) {
+      setErrorMessage("Please select a profile image.");
+      return;
+    }
 
     const fullName = `${firstName} ${lastName}`;
+    setUploading(true);
     try {
+      // upload image first
+      const photoURL = await uploadToImgBB(file);
+
+      // create user in auth
       const userCred = await createNewUser(email.toLowerCase(), password);
-      await updateUserProfile({ displayName: fullName, photoURL: profilePic });
+      // update profile in auth
+      await updateUserProfile({ displayName: fullName, photoURL });
+
+      // backend user record
       await axios.post(
         "https://journeyman-server-sigma.vercel.app/users",
         {
@@ -61,12 +106,18 @@ const Register = () => {
           role,
           coins: role === "Worker" ? 10 : 50,
           displayName: fullName,
-          photoURL: profilePic,
+          photoURL,
         }
       );
+
       navigate("/");
     } catch (err) {
-      setErrorMessage(err.response?.data?.message || "Registration failed.");
+      console.error(err);
+      setErrorMessage(
+        err.response?.data?.message || err.message || "Registration failed."
+      );
+    } finally {
+      setUploading(false);
     }
   };
 
@@ -94,7 +145,6 @@ const Register = () => {
               <span>24/7 priority support</span>
             </li>
           </ul>
-          
         </div>
 
         {/* Right Form Panel */}
@@ -166,18 +216,29 @@ const Register = () => {
               />
             </div>
 
-            {/* Profile Pic URL */}
+            {/* Profile Image Upload */}
             <div className="relative">
-              <FaImage className="absolute left-3 top-3 text-gray-400" />
+              {/* <FaImage className="absolute left-3 top-3 text-gray-400" /> */}
               <input
-                type="url"
-                placeholder="Profile Picture URL"
-                value={profilePic}
-                onChange={(e) => setProfilePic(e.target.value)}
+                type="file"
+                accept="image/*"
+                onChange={handleFileChange}
                 required
-                className="pl-10 w-full border border-gray-200 rounded-lg py-2 focus:ring-2 focus:ring-teal-300 outline-none transition"
+                className="block w-full text-sm text-gray-500
+                           file:mr-4 file:py-2 file:px-4
+                           file:rounded file:border-0
+                           file:text-sm file:font-semibold
+                           file:bg-blue-50 file:text-customColor
+                           hover:file:bg-blue-100"
               />
             </div>
+            {preview && (
+              <img
+                src={preview}
+                alt="Preview"
+                className="w-20 h-20 object-cover rounded-full mx-auto mt-2"
+              />
+            )}
 
             {/* Password */}
             <div className="relative">
@@ -230,10 +291,7 @@ const Register = () => {
               />
               <span className="text-sm">
                 I agree to the{" "}
-                <a
-                  href="/terms"
-                  className="text-teal-600 hover:underline"
-                >
+                <a href="/terms" className="text-teal-600 hover:underline">
                   Terms & Privacy
                 </a>
               </span>
@@ -247,10 +305,10 @@ const Register = () => {
 
             <button
               type="submit"
-              disabled={!acceptedTerms}
-              className="w-9/12 mx-auto flex items-center justify-center py-2 bg-gradient-to-r from-customColor to-teal-300 text-white font-semibold rounded-full shadow hover:from-teal-600 hover:to-teal-500 transition disabled:opacity-25"
+              disabled={!acceptedTerms || uploading}
+              className="w-9/12 mx-auto flex items-center justify-center py-2 bg-gradient-to-r from-customColor to-teal-300 text-white font-semibold rounded-full shadow hover:from-teal-600 hover:to-teal-500 transition disabled:opacity-50"
             >
-              Register
+              {uploading ? "Registering…" : "Register"}
             </button>
           </form>
         </div>

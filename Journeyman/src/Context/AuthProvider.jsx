@@ -52,9 +52,9 @@ const AuthProvider = ({ children }) => {
     try {
       const result = await createUserWithEmailAndPassword(auth, email, password);
       setUser(result.user);
-      // notify("Registration successful");
+      notify("Registration successful");
     } catch (error) {
-      notifyError(error.message);
+      // notifyError(error.message);
     } finally {
       setLoading(false);
     }
@@ -102,7 +102,7 @@ const AuthProvider = ({ children }) => {
     await signOut(auth);
 
     } catch (error) {
-      notifyError(error.message);
+      // notifyError(error.message);
     } finally {
       setLoading(false);
     }

@@ -5,6 +5,14 @@ import { SiPaloaltonetworks } from "react-icons/si";
 import { AuthContext } from "../Context/AuthProvider";
 import { BiSolidRightArrow } from "react-icons/bi";
 import { CiLogout } from "react-icons/ci";
+import { FaHome } from "react-icons/fa";
+import { MdFormatListBulletedAdd } from "react-icons/md";
+import { BsListTask } from "react-icons/bs";
+import { MdPayments } from "react-icons/md";
+import { GiTwoCoins } from "react-icons/gi";
+import { FaUsers } from "react-icons/fa6";
+import { BiMoneyWithdraw } from "react-icons/bi";
+
 const Dashboard = () => {
   const { logOut, user, updateUserProfile, userData,notifyError,notify } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -66,19 +74,25 @@ const Dashboard = () => {
                   className="block w-full px-4 py-2 text-left text-xl text-gray-300 hover:bg-customColor rounded"
                   to="/dashboard/adminHome"
                 >
-                  Admin's home
+                  <div className="flex gap-2 items-center">
+                 <FaHome  className="text-customColor text-sm"/> Admin's home
+                 </div>
                 </Link>
                 <Link
                   className="block w-full px-4 py-2 text-left text-xl text-gray-300 hover:bg-customColor rounded"
                   to="/dashboard/manageUser"
                 >
-                  Manage Users
+                  <div className="flex gap-2 items-center">
+                 <FaUsers className="text-customColor text-sm font-bold"/> Manage user's
+                 </div>
                 </Link>
                 <Link
                   className="block w-full px-4 py-2 text-left text-xl text-gray-300 hover:bg-customColor rounded"
                   to="/dashboard/manageTask"
                 >
-                  Manage Tasks
+                  <div className="flex gap-2 items-center">
+                 <BsListTask  className="text-customColor text-sm"/> Manage task's
+                 </div>
                 </Link>
               </>
             )}
@@ -89,60 +103,80 @@ const Dashboard = () => {
                   className="block w-full px-4 py-2 text-left text-xl text-gray-300 hover:bg-customColor rounded"
                   to="/dashboard/buyerHome"
                 >
-                  Buyer's home
+                  <div className="flex gap-2 items-center">
+                 <FaHome  className="text-customColor text-sm"/> Buyer's home
+                 </div>
                 </Link>
                 <Link
                   className="block w-full px-4 py-2 text-left text-xl text-gray-300 hover:bg-customColor rounded"
                   to="/dashboard/addNewTask"
                 >
-                  Add new task
+                  <div className="flex gap-2 items-center">
+                 <MdFormatListBulletedAdd  className="text-customColor text-sm font-bold"/> Add new task
+                 </div>
                 </Link>
                 <Link
                   className="block w-full px-4 py-2 text-left text-xl text-gray-300 hover:bg-customColor rounded"
                   to="/dashboard/myTasks"
                 >
-                  My Tasks
+                  <div className="flex gap-2 items-center">
+                 <BsListTask className="text-customColor text-sm font-bold"/> My tasks
+                 </div>
                 </Link>
                 <Link
                   className="block w-full px-4 py-2 text-left text-xl text-gray-300 hover:bg-customColor rounded"
                   to="/dashboard/allPayments"
                 >
-                  All payments
+                  <div className="flex gap-2 items-center">
+                 <MdPayments  className="text-customColor text-sm"/> All payments
+                 </div>
                 </Link>
                 <Link
                   className="block w-full px-4 py-2 text-left text-xl text-gray-300 hover:bg-customColor rounded"
                   to="/dashboard/purchaseCoin"
                 >
-                  Purchase Coins
+                 <div className="flex gap-2 items-center">
+                 <GiTwoCoins className="text-customColor text-sm"/> Purchase coins
+                 </div>
                 </Link>
               </>
             )}
 
-            {(userData?.role === "Worker" || userData?.role == undefined)&& (
+            {(userData?.role === "Worker" || userData?.role == undefined) && (
               <>
                 <Link
                   className="block w-full px-4 py-2 text-left text-xl text-gray-300 hover:bg-customColor rounded"
                   to="/dashboard/workerHome"
                 >
-                  Worker's Home
+                 <div className="flex gap-2 items-center">
+                 <FaHome className="text-customColor text-sm"/> Worker's Home
+                 </div>
                 </Link>
                 <Link
                   className="block w-full px-4 py-2 text-left text-xl text-gray-300 hover:bg-customColor rounded"
                   to="/dashboard/allTasks"
                 >
-                  All Tasks
+                  <div className="flex gap-2 items-center">
+                  <BsListTask className="text-customColor text-sm font-bold"/> All Tasks
+                 </div>
+                  
                 </Link>
                 <Link
                   className="block w-full px-4 py-2 text-left text-xl text-gray-300 hover:bg-customColor rounded"
                   to="/dashboard/mySubmissions"
                 >
-                  My Submissions
+                  <div className="flex gap-2 items-center">
+                  <MdFormatListBulletedAdd  className="text-customColor text-sm font-bold"/> My Submissions
+                 </div>
+                  
                 </Link>
                 <Link
                   className="block w-full px-4 py-2 text-left text-xl text-gray-300 hover:bg-customColor rounded"
                   to="/dashboard/withDrawls"
                 >
-                  Withdrawals
+                  <div className="flex gap-2 items-center">
+                 <BiMoneyWithdraw  className="text-customColor text-sm"/> Withdrawls
+                 </div>
                 </Link>
               </>
             )}
@@ -185,7 +219,7 @@ const Dashboard = () => {
                   to="/dashboard/adminHome"
                 >
                   <div className="flex gap-2 items-center">
-                 <BiSolidRightArrow  className="text-customColor text-sm"/> Admin's home
+                 <FaHome  className="text-customColor text-sm"/> Admin's home
                  </div>
                 </Link>
                 <Link
@@ -193,7 +227,7 @@ const Dashboard = () => {
                   to="/dashboard/manageUser"
                 >
                   <div className="flex gap-2 items-center">
-                 <BiSolidRightArrow  className="text-customColor text-sm"/> Manage user's
+                 <FaUsers className="text-customColor text-sm font-bold"/> Manage user's
                  </div>
                 </Link>
                 <Link
@@ -201,7 +235,7 @@ const Dashboard = () => {
                   to="/dashboard/manageTask"
                 >
                   <div className="flex gap-2 items-center">
-                 <BiSolidRightArrow  className="text-customColor text-sm"/> Manage task's
+                 <BsListTask  className="text-customColor text-sm"/> Manage task's
                  </div>
                 </Link>
               </>
@@ -214,7 +248,7 @@ const Dashboard = () => {
                   to="/dashboard/buyerHome"
                 >
                   <div className="flex gap-2 items-center">
-                 <BiSolidRightArrow  className="text-customColor text-sm"/> Buyer's home
+                 <FaHome  className="text-customColor text-sm"/> Buyer's home
                  </div>
                 </Link>
                 <Link
@@ -222,7 +256,7 @@ const Dashboard = () => {
                   to="/dashboard/addNewTask"
                 >
                   <div className="flex gap-2 items-center">
-                 <BiSolidRightArrow  className="text-customColor text-sm"/> Add new task
+                 <MdFormatListBulletedAdd  className="text-customColor text-sm font-bold"/> Add new task
                  </div>
                 </Link>
                 <Link
@@ -230,7 +264,7 @@ const Dashboard = () => {
                   to="/dashboard/myTasks"
                 >
                   <div className="flex gap-2 items-center">
-                 <BiSolidRightArrow  className="text-customColor text-sm"/> My tasks
+                 <BsListTask className="text-customColor text-sm font-bold"/> My tasks
                  </div>
                 </Link>
                 <Link
@@ -238,7 +272,7 @@ const Dashboard = () => {
                   to="/dashboard/allPayments"
                 >
                   <div className="flex gap-2 items-center">
-                 <BiSolidRightArrow  className="text-customColor text-sm"/> All payments
+                 <MdPayments  className="text-customColor text-sm"/> All payments
                  </div>
                 </Link>
                 <Link
@@ -246,7 +280,7 @@ const Dashboard = () => {
                   to="/dashboard/purchaseCoin"
                 >
                  <div className="flex gap-2 items-center">
-                 <BiSolidRightArrow  className="text-customColor text-sm"/> Purchase coins
+                 <GiTwoCoins className="text-customColor text-sm"/> Purchase coins
                  </div>
                 </Link>
               </>
@@ -259,7 +293,7 @@ const Dashboard = () => {
                   to="/dashboard/workerHome"
                 >
                  <div className="flex gap-2 items-center">
-                 <BiSolidRightArrow  className="text-customColor text-sm"/> Worker's Home
+                 <FaHome className="text-customColor text-sm"/> Worker's Home
                  </div>
                 </Link>
                 <Link
@@ -267,7 +301,7 @@ const Dashboard = () => {
                   to="/dashboard/allTasks"
                 >
                   <div className="flex gap-2 items-center">
-                 <BiSolidRightArrow className="text-customColor text-sm" /> All Tasks
+                  <BsListTask className="text-customColor text-sm font-bold"/> All Tasks
                  </div>
                   
                 </Link>
@@ -276,7 +310,7 @@ const Dashboard = () => {
                   to="/dashboard/mySubmissions"
                 >
                   <div className="flex gap-2 items-center">
-                 <BiSolidRightArrow  className="text-customColor text-sm" /> My Submissions
+                  <MdFormatListBulletedAdd  className="text-customColor text-sm font-bold"/> My Submissions
                  </div>
                   
                 </Link>
@@ -285,7 +319,7 @@ const Dashboard = () => {
                   to="/dashboard/withDrawls"
                 >
                   <div className="flex gap-2 items-center">
-                 <BiSolidRightArrow  className="text-customColor text-sm"/> Withdrawls
+                 <BiMoneyWithdraw  className="text-customColor text-sm"/> Withdrawls
                  </div>
                 </Link>
               </>

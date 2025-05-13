@@ -4,10 +4,10 @@ import axios from "axios";
 import { AuthContext } from "../Context/AuthProvider";
 
 const API_BASE = "https://journeyman-server-sigma.vercel.app";
-const DOLLAR_TO_COIN_RATE = 10; // 1 USD = 10 coins
+const DOLLAR_TO_COIN_RATE = 10; 
 
-const AddNewTask = () => {
-  const { user, setUser,notify,notifyError } = useContext(AuthContext);
+export default function AddNewTask() {
+  const { user, setUser, notify, notifyError } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const [task, setTask] = useState({
@@ -20,12 +20,40 @@ const AddNewTask = () => {
     submission_info: "",
   });
 
-  const handleChange = e => {
+
+  const [file, setFile] = useState(null);
+  const [preview, setPreview] = useState("");
+  const [uploading, setUploading] = useState(false);
+
+  const handleChange = (e) => {
     const { name, value } = e.target;
-    setTask(prev => ({ ...prev, [name]: value }));
+    setTask((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = async e => {
+  const handleFileChange = (e) => {
+    const selected = e.target.files[0];
+    if (!selected) return;
+    setFile(selected);
+    setPreview(URL.createObjectURL(selected));
+  };
+
+
+  const uploadToImgBB = async (imageFile) => {
+    const apiKey = import.meta.env.VITE_IMGBB_API_KEY;
+    const form = new FormData();
+    form.append("image", imageFile);
+    const res = await fetch(
+      `https://api.imgbb.com/1/upload?key=${apiKey}`,
+      { method: "POST", body: form }
+    );
+    const data = await res.json();
+    if (!data.success) {
+      throw new Error("Image upload failed");
+    }
+    return data.data.url;
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!user?.email) {
@@ -33,7 +61,6 @@ const AddNewTask = () => {
       return;
     }
 
-    // 1) Parse inputs
     const requiredWorkers = Number(task.required_workers);
     const payRateUSD = Number(task.payable_amount);
     if (
@@ -46,11 +73,9 @@ const AddNewTask = () => {
       return;
     }
 
-    // 2) Calculate total cost in coins
-    //    same formula as refund in MyTasks: workers * USD * rate
-    const totalCostCoins = requiredWorkers * payRateUSD * DOLLAR_TO_COIN_RATE;
+    const totalCostCoins =
+      requiredWorkers * payRateUSD * DOLLAR_TO_COIN_RATE;
 
-    // 3) Get fresh coin balance from server
     let currentCoins;
     try {
       const userRes = await axios.get(
@@ -58,12 +83,10 @@ const AddNewTask = () => {
       );
       currentCoins = Number(userRes.data.coins) || 0;
     } catch (err) {
-      //console.error("Failed to fetch user balance:", err);
       notifyError("Unable to verify your coin balance. Try again later.");
       return;
     }
 
-    // 4) Check balance
     if (currentCoins < totalCostCoins) {
       notifyError(
         `Insufficient coins. You have ${currentCoins}, but need ${totalCostCoins}.`
@@ -72,19 +95,32 @@ const AddNewTask = () => {
       return;
     }
 
-    // 5) Build task payload
+    let imageUrl = task.task_image_url;
+    if (file) {
+      setUploading(true);
+      try {
+        imageUrl = await uploadToImgBB(file);
+      } catch (err) {
+        console.error(err);
+        notifyError("Image upload failed. Please try again.");
+        setUploading(false);
+        return;
+      } finally {
+        setUploading(false);
+      }
+    }
+
     const payload = {
       task_title: task.task_title,
       task_detail: task.task_detail,
       required_workers: requiredWorkers,
       payable_amount: payRateUSD,
       completion_date: new Date(task.completion_date).toISOString(),
-      task_image_url: task.task_image_url,
+      task_image_url: imageUrl,
       submission_info: task.submission_info,
       user_email: user.email,
     };
 
-    // 6) Create task and then deduct coins
     try {
       const createRes = await axios.post(
         `${API_BASE}/tasks`,
@@ -93,19 +129,19 @@ const AddNewTask = () => {
       );
       if (createRes.status >= 200 && createRes.status < 300) {
         const newBalance = currentCoins - totalCostCoins;
-        // Mirror MyTasks refund pattern but subtract instead
         await axios.put(
           `${API_BASE}/users/${encodeURIComponent(user.email)}`,
           { coins: newBalance }
         );
 
-        // Update context so UI shows new balance immediately
         if (setUser) {
           setUser({ ...user, coins: newBalance });
         }
 
-        notify(`Task added! Coins deducted: ${totalCostCoins}. New balance: ${newBalance}`);
-        // Reset form
+        notify(
+          `Task added! Coins deducted: ${totalCostCoins}. New balance is: ${newBalance}`
+        );
+
         setTask({
           task_title: "",
           task_detail: "",
@@ -115,13 +151,14 @@ const AddNewTask = () => {
           task_image_url: "",
           submission_info: "",
         });
+        setFile(null);
+        setPreview("");
       } else {
-        //console.error("Task creation failed:", createRes);
         notifyError("Failed to add task. Try again.");
       }
     } catch (err) {
-      //console.error("Error during task creation or coin deduction:", err);
-      notifyError("An error occurred. Please check //console for details.");
+      console.error(err);
+      notifyError("An error occurred. Please check console for details.");
     }
   };
 
@@ -136,7 +173,7 @@ const AddNewTask = () => {
         </p>
 
         <form className="mt-6 space-y-4" onSubmit={handleSubmit}>
-          {/* Task Title */}
+
           <div className="form-control">
             <label className="label">
               <span className="label-text text-lg">Task Title</span>
@@ -152,7 +189,7 @@ const AddNewTask = () => {
             />
           </div>
 
-          {/* Task Details */}
+
           <div className="form-control">
             <label className="label">
               <span className="label-text text-lg">Task Details</span>
@@ -167,7 +204,7 @@ const AddNewTask = () => {
             />
           </div>
 
-          {/* Workers & Rate */}
+
           <div className="form-control grid grid-cols-2 gap-4">
             <div>
               <label className="label">
@@ -205,7 +242,7 @@ const AddNewTask = () => {
             </div>
           </div>
 
-          {/* Date & Image */}
+
           <div className="form-control grid grid-cols-2 gap-4">
             <div>
               <label className="label">
@@ -222,20 +259,30 @@ const AddNewTask = () => {
             </div>
             <div>
               <label className="label">
-                <span className="label-text text-lg">Task Image URL</span>
+                <span className="label-text text-lg">Task Image</span>
               </label>
               <input
-                type="text"
-                name="task_image_url"
-                placeholder="Enter image URL"
-                className="input input-bordered w-full text-lg py-3"
-                value={task.task_image_url}
-                onChange={handleChange}
+                type="file"
+                accept="image/*"
+                onChange={handleFileChange}
+                className="input input-bordered w-full py-2 text-sm text-gray-500
+                           file:mr-4 file:py-2 file:px-4
+                           file:rounded file:border-0
+                           file:text-sm file:font-semibold
+                           file:bg-blue-50 file:text-customColor
+                           hover:file:bg-blue-100"
               />
+              {preview && (
+                <img
+                  src={preview}
+                  alt="preview"
+                  className="w-24 h-24 object-cover rounded-md mt-2"
+                />
+              )}
             </div>
           </div>
 
-          {/* Submission Info */}
+
           <div className="form-control">
             <label className="label">
               <span className="label-text text-lg">Submission Info</span>
@@ -250,19 +297,18 @@ const AddNewTask = () => {
             />
           </div>
 
-          {/* Submit Button */}
+
           <div className="flex justify-center">
             <button
               type="submit"
-              className="btn btn-md bg-customColor text-white rounded-full w-8/12 hover:scale-105"
+              disabled={uploading}
+              className="btn btn-md bg-customColor text-white rounded-full w-8/12 hover:scale-105 disabled:opacity-50"
             >
-              Submit Task
+              {uploading ? "Uploading…" : "Submit Task"}
             </button>
           </div>
         </form>
       </div>
     </div>
   );
-};
-
-export default AddNewTask;
+}
