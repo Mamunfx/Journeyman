@@ -6,12 +6,6 @@
 
 ---
 
-## 🔑 Admin Access  
-- **Username:** journeyman@gmail.com  
-- **Password:** Journey123 
-
----
-
 ## ✨ Why You’ll Love Journeyman
 
 1. **Friendly Onboarding** – Sign up in seconds, pick your role, and dive right in.  
